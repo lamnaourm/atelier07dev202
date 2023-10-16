@@ -28,24 +28,32 @@ export default function ToDoListApp() {
         document.getElementById('task').focus()
     }
 
-    const deleteAll = () =>{
+    const deleteAll = () => {
         setTaches([])
     }
 
-    const deleteTermine = () =>{
+    const deleteTermine = () => {
         setTaches(taches => taches.filter(t => !t.completed))
     }
 
-    const deleteEncours = () =>{
+    const deleteEncours = () => {
         setTaches(taches => taches.filter(t => t.completed))
     }
 
     const modifTermine = () => {
-        setTaches(taches => taches.map(t => ({...t, completed:true})))
+        setTaches(taches => taches.map(t => ({ ...t, completed: true })))
     }
 
     const modifEncours = () => {
-        setTaches(taches => taches.map(t => ({...t, completed:false})))
+        setTaches(taches => taches.map(t => ({ ...t, completed: false })))
+    }
+
+    const deleteTache = (ind) => {
+        setTaches(taches => taches.filter((t, index) => index !== ind))
+    }
+
+    const modifTache = (ind) => {
+        setTaches(taches => taches.map((t, index) => index !== ind? t: {...t, completed:!t.completed}))
         
     }
 
@@ -70,7 +78,7 @@ export default function ToDoListApp() {
                     <button onClick={modifEncours}><MdPublishedWithChanges /> En cours</button>
                 </fieldset>
             </div>
-           
+
             <div>
                 <div className='info'>
                     <BsFillBarChartFill />
@@ -82,10 +90,16 @@ export default function ToDoListApp() {
                 </div>
                 <div className='list-tasks'>
                     {taches.map((t, index) => <div key={index} className='task'>
-                        <h3>{index + 1} - {t.description}</h3>
-                        {
-                            t.completed ? <AiOutlineCheck /> : <MdOutlinePending />
-                        }
+                        <h3> {
+                                t.completed ? <AiOutlineCheck /> : <MdOutlinePending />
+                            }  
+                         {t.description}
+                        </h3>
+                        <div className='actionstask'>
+                            <button onClick={() => modifTache(index)}><MdPublishedWithChanges /></button>
+                            <button onClick={() => deleteTache(index)}><AiFillDelete /></button>
+                        </div>
+
                     </div>)}
                 </div>
             </div>
