@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { AiOutlineCheck } from 'react-icons/ai';
 import { MdOutlinePending, MdAdd } from 'react-icons/md';
+import { BsFillBarChartFill } from 'react-icons/bs';
 
 export default function ToDoListApp() {
 
     const [taches, setTaches] = useState([
         {desricption:'Réviser HTML/CSS', completed:true},
         {desricption:'Réviser mongodb', completed:false},
-        {desricption:'Réviser Javascript', completed:false}
+        {desricption:'Réviser Javascript', completed:true}
     ])
     const [task, setTask] = useState('');
 
@@ -15,7 +16,7 @@ export default function ToDoListApp() {
         if(task.trim()==='')
             alert('Description de tache vide');
         else 
-            setTaches(taches => [...taches, {desricption:task, completed:true }]);
+            setTaches(taches => [...taches, {desricption:task, completed:false }]);
     }
 
   return (
@@ -27,14 +28,23 @@ export default function ToDoListApp() {
                 <button onClick={addTache}><MdAdd /> Add</button>
             </fieldset>
         </div>
-
-        <div className='list-tasks'>
-            {taches.map((t, index) => <div key={index} className='task'>
-                <h3>{t.desricption}</h3>
-                {
-                    t.completed ? <AiOutlineCheck /> : <MdOutlinePending />
-                }   
-            </div> )}
+        <div>
+            <div className='info'>
+                <BsFillBarChartFill />
+                <div>
+                    {taches.length} Taches <br />
+                    {taches.filter(t => t.completed).length} Terminé <br />
+                    {taches.filter(t => !t.completed).length} En cours
+                </div>
+            </div>
+            <div className='list-tasks'>
+                {taches.map((t, index) => <div key={index} className='task'>
+                    <h3>{index+1} - {t.desricption}</h3>
+                    {
+                        t.completed ? <AiOutlineCheck /> : <MdOutlinePending />
+                    }   
+                </div> )}
+            </div>  
         </div>
     </div>
   )

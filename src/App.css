@@ -62,3 +62,15 @@
   gap: 20px;
   font-size: 11px;
 }
+.info {
+  background-color: brown;
+  color: white;
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  gap: 20px;
+}
+.info svg {
+  font-size: 40px;
+  color: antiquewhite;
+}
