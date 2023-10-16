@@ -15,8 +15,15 @@ export default function ToDoListApp() {
     const addTache = (e) => {
         if(task.trim()==='')
             alert('Description de tache vide');
-        else 
+        else {
+            if(taches.filter(t => t.desricption.toUpperCase()===task.toUpperCase()).length>0){
+                alert('Tache existe deja');
+                return
+            }
             setTaches(taches => [...taches, {desricption:task, completed:false }]);
+            setTask('')
+            document.getElementById('task').focus()
+        }
     }
 
   return (
