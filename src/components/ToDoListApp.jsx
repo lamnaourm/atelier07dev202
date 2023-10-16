@@ -9,10 +9,13 @@ export default function ToDoListApp() {
         {desricption:'Réviser mongodb', completed:false},
         {desricption:'Réviser Javascript', completed:false}
     ])
-    const [task, setTask] = useState();
+    const [task, setTask] = useState('');
 
     const addTache = (e) => {
-        setTaches(taches => [...taches, {desricption:task, completed:true }]);
+        if(task.trim()==='')
+            alert('Description de tache vide');
+        else 
+            setTaches(taches => [...taches, {desricption:task, completed:true }]);
     }
 
   return (
