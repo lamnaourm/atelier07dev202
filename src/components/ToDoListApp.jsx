@@ -20,12 +20,13 @@ export default function ToDoListApp() {
 
   return (
     <div className='content'>
-
-        <fieldset>
-            <legend>Ajout</legend>
-            <input type="text" name="task" id="task" value={task} onChange={(e) => setTask(e.target.value)} />
-            <button onClick={addTache}><MdAdd /> Add</button>
-        </fieldset>
+        <div>
+            <fieldset className='ajout'>
+                <legend>Ajout</legend>
+                <input type="text" name="task" id="task" value={task} onChange={(e) => setTask(e.target.value)} placeholder='saisir descrition ...'/>
+                <button onClick={addTache}><MdAdd /> Add</button>
+            </fieldset>
+        </div>
 
         <div className='list-tasks'>
             {taches.map((t, index) => <div key={index} className='task'>
