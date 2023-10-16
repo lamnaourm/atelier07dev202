@@ -6,9 +6,9 @@ import { BsFillBarChartFill } from 'react-icons/bs';
 export default function ToDoListApp() {
 
     const [taches, setTaches] = useState([
-        { desricption: 'Réviser HTML/CSS', completed: true },
-        { desricption: 'Réviser mongodb', completed: false },
-        { desricption: 'Réviser Javascript', completed: true }
+        { description: 'Réviser HTML/CSS', completed: true },
+        { description: 'Réviser mongodb', completed: false },
+        { description: 'Réviser Javascript', completed: true }
     ])
     const [task, setTask] = useState('');
 
@@ -23,7 +23,7 @@ export default function ToDoListApp() {
             return
         }
 
-        setTaches(taches => [...taches, { desricption: task, completed: false }]);
+        setTaches(taches => [...taches, { description: task, completed: false }]);
         setTask('')
         document.getElementById('task').focus()
     }
