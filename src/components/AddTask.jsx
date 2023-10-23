@@ -7,7 +7,7 @@ export default function AddTask(props) {
     return (
         <fieldset className='ajout'>
             <legend>Ajout</legend>
-            <input type="text" name="task" id="task" value={props.tache} onChange={props.hancleChange} placeholder='saisir descrition ...' />
+            <input type="text" name="task" id="task" value={props.tache} onChange={props.handleChange} placeholder='saisir descrition ...' />
             <button onClick={props.handleClick}><MdAdd /> Add</button>
         </fieldset>
     )

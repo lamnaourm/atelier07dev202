@@ -63,7 +63,7 @@ export default function ToDoListApp() {
     return (
         <div className='content'>
             <div className='actions'>
-                <AddTask handleClick={addTache} tache={task} hancleChange={(e) => setTask(e.target.value)} />
+                <AddTask handleClick={addTache} tache={task} handleChange={(e) => setTask(e.target.value)} />
                 <DeleteTasks deleteAll={deleteAll} deleteTermine={deleteTermine} deleteEncours={deleteEncours} />
                 <UpdateTasks modifTermine={modifTermine} modifEncours={modifEncours} />
             </div>
