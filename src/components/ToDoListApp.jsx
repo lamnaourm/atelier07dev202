@@ -3,6 +3,8 @@ import { AiOutlineCheck, AiFillDelete } from 'react-icons/ai';
 import { MdOutlinePending, MdAdd, MdPublishedWithChanges } from 'react-icons/md';
 import { BsFillBarChartFill } from 'react-icons/bs';
 import AddTask from './AddTask';
+import DeleteTasks from './DeleteTasks';
+import UpdateTasks from './UpdateTasks';
 
 export default function ToDoListApp() {
 
@@ -61,19 +63,9 @@ export default function ToDoListApp() {
     return (
         <div className='content'>
             <div className='actions'>
-                <AddTask handleClick={addTache} tache={task} hancleChange={(e) => setTask(e.target.value)}/>
-                <fieldset className='supression'>
-                    <legend>Suppression</legend>
-                    <button onClick={deleteAll}><AiFillDelete /> Tous</button>
-                    <button onClick={deleteTermine}><AiFillDelete /> Terminé</button>
-                    <button onClick={deleteEncours}><AiFillDelete /> En cours</button>
-                </fieldset>
-
-                <fieldset className='modification'>
-                    <legend>Modification</legend>
-                    <button onClick={modifTermine}><MdPublishedWithChanges /> Terminé</button>
-                    <button onClick={modifEncours}><MdPublishedWithChanges /> En cours</button>
-                </fieldset>
+                <AddTask handleClick={addTache} tache={task} hancleChange={(e) => setTask(e.target.value)} />
+                <DeleteTasks deleteAll={deleteAll} deleteTermine={deleteTermine} deleteEncours={deleteEncours} />
+                <UpdateTasks modifTermine={modifTermine} modifEncours={modifEncours} />
             </div>
 
             <div>
