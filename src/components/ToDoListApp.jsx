@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { AiOutlineCheck, AiFillDelete } from 'react-icons/ai';
 import { MdOutlinePending, MdAdd, MdPublishedWithChanges } from 'react-icons/md';
 import { BsFillBarChartFill } from 'react-icons/bs';
+import AddTask from './AddTask';
 
 export default function ToDoListApp() {
 
@@ -18,7 +19,7 @@ export default function ToDoListApp() {
             return
         }
 
-        if (taches.filter(t => t.desricption.toUpperCase() === task.toUpperCase()).length > 0) {
+        if (taches.filter(t => t.description.toUpperCase() === task.toUpperCase()).length > 0) {
             alert('Tache existe deja');
             return
         }
@@ -53,18 +54,14 @@ export default function ToDoListApp() {
     }
 
     const modifTache = (ind) => {
-        setTaches(taches => taches.map((t, index) => index !== ind? t: {...t, completed:!t.completed}))
-        
+        setTaches(taches => taches.map((t, index) => index !== ind ? t : { ...t, completed: !t.completed }))
+
     }
 
     return (
         <div className='content'>
             <div className='actions'>
-                <fieldset className='ajout'>
-                    <legend>Ajout</legend>
-                    <input type="text" name="task" id="task" value={task} onChange={(e) => setTask(e.target.value)} placeholder='saisir descrition ...' />
-                    <button onClick={addTache}><MdAdd /> Add</button>
-                </fieldset>
+                <AddTask handleClick={addTache} tache={task} hancleChange={(e) => setTask(e.target.value)}/>
                 <fieldset className='supression'>
                     <legend>Suppression</legend>
                     <button onClick={deleteAll}><AiFillDelete /> Tous</button>
@@ -73,7 +70,7 @@ export default function ToDoListApp() {
                 </fieldset>
 
                 <fieldset className='modification'>
-                    <legend>modification</legend>
+                    <legend>Modification</legend>
                     <button onClick={modifTermine}><MdPublishedWithChanges /> Terminé</button>
                     <button onClick={modifEncours}><MdPublishedWithChanges /> En cours</button>
                 </fieldset>
@@ -91,9 +88,9 @@ export default function ToDoListApp() {
                 <div className='list-tasks'>
                     {taches.map((t, index) => <div key={index} className='task'>
                         <h3> {
-                                t.completed ? <AiOutlineCheck /> : <MdOutlinePending />
-                            }  
-                         {t.description}
+                            t.completed ? <AiOutlineCheck /> : <MdOutlinePending />
+                        }
+                            {t.description}
                         </h3>
                         <div className='actionstask'>
                             <button onClick={() => modifTache(index)}><MdPublishedWithChanges /></button>
