@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { AiOutlineCheck, AiFillDelete } from 'react-icons/ai';
-import { MdOutlinePending, MdAdd, MdPublishedWithChanges } from 'react-icons/md';
-import { BsFillBarChartFill } from 'react-icons/bs';
 import AddTask from './AddTask';
 import DeleteTasks from './DeleteTasks';
 import UpdateTasks from './UpdateTasks';
+import StateTasks from './StateTasks';
+import ListTasks from './ListTasks';
 
 export default function ToDoListApp() {
 
@@ -12,7 +11,8 @@ export default function ToDoListApp() {
         { description: 'Réviser HTML/CSS', completed: true },
         { description: 'Réviser mongodb', completed: false },
         { description: 'Réviser Javascript', completed: true }
-    ])
+    ]);
+
     const [task, setTask] = useState('');
 
     const addTache = (e) => {
@@ -69,28 +69,8 @@ export default function ToDoListApp() {
             </div>
 
             <div>
-                <div className='info'>
-                    <BsFillBarChartFill />
-                    <div>
-                        {taches.length} Taches <br />
-                        {taches.filter(t => t.completed).length} Terminé <br />
-                        {taches.filter(t => !t.completed).length} En cours
-                    </div>
-                </div>
-                <div className='list-tasks'>
-                    {taches.map((t, index) => <div key={index} className='task'>
-                        <h3> {
-                            t.completed ? <AiOutlineCheck /> : <MdOutlinePending />
-                        }
-                            {t.description}
-                        </h3>
-                        <div className='actionstask'>
-                            <button onClick={() => modifTache(index)}><MdPublishedWithChanges /></button>
-                            <button onClick={() => deleteTache(index)}><AiFillDelete /></button>
-                        </div>
-
-                    </div>)}
-                </div>
+                <StateTasks taches={taches} />
+                <ListTasks taches={taches} modifTache={modifTache} deleteTache={deleteTache}/>
             </div>
         </div>
     )
